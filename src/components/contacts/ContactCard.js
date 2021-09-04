@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useContacts } from "../../contexts/ContactContext";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -33,11 +34,14 @@ const CardBody = styled.div`
 `;
 
 const ContactCard = ({
+  id,
   firstName = "",
   lastName = "",
   phoneNumber = "",
   profilePic = "",
 }) => {
+  const { deleteContact } = useContacts();
+
   return (
     <CardWrapper>
       <ContactAvatarWrapper>
@@ -53,7 +57,7 @@ const ContactCard = ({
         <p>{phoneNumber}</p>
       </CardBody>
       <div>
-        <button>X</button>
+        <button onClick={() => deleteContact(id)}>X</button>
       </div>
     </CardWrapper>
   );
